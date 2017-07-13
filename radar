@@ -1,0 +1,280 @@
+# radar
+
+//TNE PROCESSING CODE:
+
+import processing.serial.*;
+
+Serial port;
+int distance;
+int derection=1;
+void setup()
+{
+  fullScreen();
+  smooth();
+  port = new Serial(this, "COM3", 115200);
+  port.clear();
+  frameRate(10);
+  delay(500);
+  background(0);
+}
+
+void draw()
+{  
+  noStroke();
+   fill(0);
+  rect(0, 0, 350, 150);
+  distance = port.read();
+  port.write(angle);
+  drawRadar();
+  drawText();
+  radar_work();
+  drawLine();
+}
+ 
+//TEXT CODE:
+ 
+void drawText()
+{ 
+  fill(98, 245, 60);
+  textSize(25);
+  if (distance>0)
+  {
+    text("Distance of object : "+distance+"cm", -670, -720);
+  } else
+  {
+    text("Distance: no object", -670, -720);
+  }
+  textSize(13);
+  text("10cm", -17, -55);
+  text("20cm", -17, -105);
+  text("30cm", -17, -155);
+  text("40cm", -17, -205);
+  text("50cm", -17, -255);
+  text("60cm", -17, -305);
+  text("70cm", -17, -355);
+  text("80cm", -17, -405);
+  text("90cm", -17, -455);
+  text("100cm", -17, -505);
+  text("110cm", -17, -555);
+  text("120cm", -17, -605);
+  text("130cm", -17, -655);
+  text("140cm", -20, -705);
+  textSize(25);
+  fill(98, 245, 60);
+  translate(648*cos(radians(10)), -675*sin(radians(10)));
+  rotate(-radians(10));
+  text("10°", 0, 0);
+  resetMatrix();
+  translate(1425*cos(radians(20)), 2230*sin(radians(20)));
+  rotate(-radians(0));
+  text("0°", 0, 0);
+  resetMatrix();
+  translate(1382*cos(radians(20)), 1574*sin(radians(20)));
+  rotate(-radians(20));
+  text("20°", 0, 0);
+  resetMatrix();
+  translate(1446*cos(radians(30)), 875*sin(radians(30)));
+  rotate(-radians(30));
+  text("30°", 0, 0);
+  resetMatrix();
+  translate(1373*cos(radians(30)), 690*sin(radians(30)));
+  rotate(-radians(40));
+  text("40°", 0, 0);
+  resetMatrix();
+  translate(1280*cos(radians(30)), 525*sin(radians(30)));
+  rotate(-radians(50));
+  text("50°", 0, 0);
+  resetMatrix();
+  translate(1175*cos(radians(30)), 400*sin(radians(30)));
+  rotate(-radians(60));
+  text("60°", 0, 0);
+  resetMatrix();
+  translate(1050*cos(radians(30)), 300*sin(radians(30)));
+  rotate(-radians(70));
+  text("70°", 0, 0);
+  resetMatrix();
+  translate(925*cos(radians(30)), 250*sin(radians(30)));
+  rotate(-radians(80));
+  text("80°", 0, 0);
+  resetMatrix();
+  translate(780*cos(radians(30)), 190*sin(radians(30)));
+  rotate(-radians(0));
+  text("90°", 0, 0);
+  resetMatrix();
+  translate(665*cos(radians(30)), 255*sin(radians(30)));
+  rotate(-radians(100));
+  text("100°", 0, 0);
+  resetMatrix();
+  translate(540*cos(radians(30)), 315*sin(radians(30)));
+  rotate(-radians(110));
+  text("110°", 0, 0);
+  resetMatrix();
+  translate(420*cos(radians(30)), 410*sin(radians(30)));
+  rotate(-radians(120));
+  text("120°", 0, 0);
+  resetMatrix();
+  translate(310*cos(radians(30)), 545*sin(radians(30)));
+  rotate(-radians(130));
+  text("130°", 0, 0);
+  resetMatrix();
+  translate(220*cos(radians(30)), 700*sin(radians(30)));
+  rotate(-radians(140));
+  text("140°", 0, 0);
+  resetMatrix();
+  translate(146*cos(radians(30)), 885*sin(radians(30)));
+  rotate(-radians(150));
+  text("150°", 0, 0);
+  resetMatrix();
+  translate(80*cos(radians(20)), 1590*sin(radians(20)));
+  rotate(-radians(160));
+  text("160°", 0, 0);
+  resetMatrix();
+  translate(-1*cos(radians(20)), 2230*sin(radians(20)));
+  rotate(-radians(0));
+  text("180°", 0, 0);
+  resetMatrix();
+  translate(60*cos(radians(30)), 1310*sin(radians(30)));
+  rotate(-radians(170));
+  text("170°", 0, 0);
+}
+
+ DRAW CODE:
+ 
+void drawRadar() {
+  translate(690, 765);
+  noFill();
+  strokeWeight(1.5);
+  stroke(98, 245, 31);
+
+  arc(0, 0, 1400, 1400, PI, TWO_PI);
+
+  arc(0, 0, 1300, 1300, PI, TWO_PI);
+
+  arc(0, 0, 1200, 1200, PI, TWO_PI);
+
+  arc(0, 0, 1100, 1100, PI, TWO_PI);
+
+  arc(0, 0, 1000, 1000, PI, TWO_PI);
+
+  arc(0, 0, 900, 900, PI, TWO_PI);
+
+  arc(0, 0, 800, 800, PI, TWO_PI);
+
+  arc(0, 0, 700, 700, PI, TWO_PI);
+
+  arc(0, 0, 600, 600, PI, TWO_PI);
+
+  arc(0, 0, 500, 500, PI, TWO_PI);
+
+  arc(0, 0, 400, 400, PI, TWO_PI);
+
+  arc(0, 0, 300, 300, PI, TWO_PI);
+
+  arc(0, 0, 200, 200, PI, TWO_PI);
+
+  arc(0, 0, 100, 100, PI, TWO_PI);
+  stroke(98, 245, 31);
+  noFill();
+  line(760, 0, 760, 0);
+  line(0, 0, -700*cos(radians(10)), -700*sin(radians(10)));
+  line(0, 0, -700*cos(radians(20)), -700*sin(radians(20)));
+  line(0, 0, -700*cos(radians(30)), -700*sin(radians(30)));
+  line(0, 0, -700*cos(radians(40)), -700*sin(radians(40)));
+  line(0, 0, -700*cos(radians(50)), -700*sin(radians(50)));
+  line(0, 0, -700*cos(radians(60)), -700*sin(radians(60)));
+  line(0, 0, -700*cos(radians(70)), -700*sin(radians(70)));
+  line(0, 0, -700*cos(radians(80)), -700*sin(radians(80)));
+  line(0, 0, -700*cos(radians(90)), -700*sin(radians(90)));
+  line(0, 0, -700*cos(radians(100)), -700*sin(radians(100)));
+  line(0, 0, -700*cos(radians(110)), -700*sin(radians(110)));
+  line(0, 0, -700*cos(radians(120)), -700*sin(radians(120)));
+  line(0, 0, -700*cos(radians(130)), -700*sin(radians(130)));
+  line(0, 0, -700*cos(radians(140)), -700*sin(radians(140)));
+  line(0, 0, -700*cos(radians(150)), -700*sin(radians(150)));
+  line(0, 0, -700*cos(radians(160)), -700*sin(radians(160)));
+  line(0, 0, -700*cos(radians(170)), -700*sin(radians(170)));
+  line(-860*cos(radians(30)), 0, 700, 0);
+}
+
+//WORKING CODE:
+
+void radar_work()
+{
+  angle+=derection;
+  if (angle==180)
+  {
+    derection=-1;
+  }
+  if (angle==0)
+  {
+    derection=1;
+  }
+}
+
+//SCAN CODE:
+
+void drawLine()
+{
+  strokeWeight(11);
+  stroke(255);
+  translate(-650, 5);
+  line(0, 0, -700*cos(radians(-angle-10)), -700*sin(radians(-angle-10)));
+  int pixelsDistance=0;
+  strokeWeight(10);
+  stroke(#0000FF);
+  pixelsDistance = distance * 5;
+  if (distance!=0)
+  {
+    if (distance<150)
+    {
+      line(-pixelsDistance*cos(radians(-angle-10)), -pixelsDistance*sin(radians(-angle-10)), -700*cos(radians(-angle-10)), -700*sin(radians(-angle-10)));
+    }
+  }
+}
+
+
+
+
+ //*******************************************************
+
+ //THE ARDUINO CODE:
+ 
+#include <Servo.h >
+int trig = 9;
+int echo = A5;
+int  servoPin = 6;
+int distance;
+Servo servo;
+
+void setup()
+{
+  Serial.begin(115200);
+  servo.attach(servoPin);
+  pinMode(9, OUTPUT);
+  pinMode(A5, INPUT);
+}
+
+void loop()
+{
+  if (Serial.available())
+  {
+    byte data = Serial.read();
+    servo.write(data);
+    Serial.write(measure());
+  }
+}
+byte measure()
+{
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+  long value =  pulseIn(echo, HIGH, 9000);
+  int distance = value / 55.264f;
+  return ((byte)distance);
+}
+
+
+
+//BY KIANLAGHIEE
